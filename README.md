@@ -9,6 +9,8 @@ On Terminal use following commands from project directory:
 mkdir -p ~/dev/docker/mongodb5  or mkdir -p /home/{uses_home_dir}/dev/docker/mongodb5
 git clone https://github.com/ranveer-kumar/spark-cms-backend.git
 cd spark-cms-backend
+git checkout development
+git pull
 docker-compose up
 mvn clean package
 mvn spring-boot:run
