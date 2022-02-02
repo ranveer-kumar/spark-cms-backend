@@ -6,15 +6,17 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class Article {
 	@Id
-	private String id;
+	private Long id;
 	private String domainId;
 	private String title;
 	private String headline;
@@ -29,14 +31,22 @@ public class Article {
 	private String lastPublishedByUserName;
 	private String lastPublishedDate;
 	private String firstPublishedDate;
-	private Metadata metadata = new Metadata();
+	@Builder.Default
+	private MetaData metaData = new MetaData();
+	@Builder.Default
 	private Date scheduledDate = new Date();
-	private Date scheduledAt = new Date();;
-	private Date scheduledBy = new Date();;
+	@Builder.Default
+	private Date scheduledAt = new Date();
+	@Builder.Default
+	private Date scheduledBy = new Date();
 	private int isDeleted;
+	@Builder.Default
 	private ArrayList<String> readByUsers = new ArrayList<>();
-	private Date expiryDate = new Date();;
-	private Date expireAt = new Date();;
+	@Builder.Default
+	private Date expiryDate = new Date();
+	@Builder.Default
+	private Date expireAt = new Date();
 	private boolean changesPublished;
+	@Builder.Default
 	private LeadMedia leadMedia = new LeadMedia();
 }

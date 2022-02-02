@@ -1,0 +1,10 @@
+type Query {
+	allArticles: [Article]
+	getArticleById (articleId: ID!): Article
+}
+
+type Mutation {
+ 	saveArticle(articleInput: ArticleInput!): Article!
+ 	deleteArticle(articleId: Int!): Boolean
+ 	updateArticle(articleInput: ArticleInput!): Article!
+}

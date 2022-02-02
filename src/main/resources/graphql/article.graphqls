@@ -1,0 +1,107 @@
+type Article {
+	id: Int
+	domainId: String
+	title: String
+	headline: String
+	summary: String
+	articleType: String
+	createdBy: String
+	createdDate: String
+	lastModifiedBy: String
+	lastModifiedByUserName: String
+	lastModifiedDate: String
+	lastPublishedBy: String
+	lastPublishedByUserName: String
+	lastPublishedDate: String
+	firstPublishedDate: String
+	metaData: MetaData
+	scheduledDate: String
+	scheduledAt: String
+	scheduledBy: String
+	isDeleted: Boolean
+	readByUsers: [String]
+	expiryDate: String
+	expireAt: String
+	changesPublished: Boolean
+	leadMedia: LeadMedia
+}
+
+type LeadMedia {
+	mediaType: String
+	image: Image
+    video: Video
+}
+
+type Video{
+	url: String
+	body: String
+	caption: String
+	embedUrl: String
+}
+
+type Image{
+	images: [Image]
+	caption: String
+	name: String
+	imageCredit: String
+	anchorTag: String
+}
+
+type MetaData {
+	metaTitle: String
+	url: String
+}
+
+input ArticleInput {
+	id: Int
+	domainId: String
+	title: String
+	headline: String
+	summary: String
+	articleType: String
+	createdBy: String
+	createdDate: String
+	lastModifiedBy: String
+	lastModifiedByUserName: String
+	lastModifiedDate: String
+	lastPublishedBy: String
+	lastPublishedByUserName: String
+	lastPublishedDate: String
+	firstPublishedDate: String
+	metaData: MetaDataInput
+	scheduledDate: String
+	scheduledAt: String
+	scheduledBy: String
+	isDeleted: Boolean
+	readByUsers: [String]
+	expiryDate: String
+	expireAt: String
+	changesPublished: Boolean
+	leadMedia: LeadMediaInput
+}
+
+input MetaDataInput {
+	metaTitle: String
+	url: String
+}
+
+input LeadMediaInput {
+	mediaType:String
+	image: ImageInput
+	video: VideoInput
+}
+
+input VideoInput{
+	url: String
+	body: String
+	caption: String
+	embedUrl: String
+}
+
+input ImageInput{
+	images: [ImageInput]
+	caption: String
+	name: String
+	imageCredit: String
+	anchorTag: String
+}
