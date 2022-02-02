@@ -17,6 +17,8 @@ mvn spring-boot:run
 or
 java -jar ./target/spark-cms-0.0.1-SANPSHOT.jar
 ```
+#### GraphQL QUERY UI
+[http://localhost:8888/graphiql?path=/graphql](http://localhost:8888/graphiql?path=/graphql)
 
 #### Swagger
 [Swagger API URL](http://localhost:8888/swagger-ui/index.html)
