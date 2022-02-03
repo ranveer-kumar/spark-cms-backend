@@ -1,16 +1,20 @@
 package com.spark.cms.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.spark.cms.model.Article;
 import com.spark.cms.repository.ArticleRepository;
 import com.spark.cms.service.ArticleService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ArticleServiceImpl implements ArticleService {
 
 	@Autowired
@@ -22,15 +26,15 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public Optional<Article> getArticleByID(Long id) {
-		// TODO Auto-generated method stub
-		return articleRepository.findById(id);
+	public Optional<Article> getArticleByID(Long articleId) {
+		log.debug("Before getArticleByID with articleId {}", articleId);
+		return articleRepository.findById(articleId);
 	}
 
 	@Override
-	public List<Article> getAllArticles() {
-		// TODO Auto-generated method stub
-		return articleRepository.findAll();
+	public Page<Article> getAllArticles(Pageable pageable) {
+		log.debug("Before getAllArticles with pageable parameter");
+		return articleRepository.findAll(pageable);
 	}
 	
 	@Override

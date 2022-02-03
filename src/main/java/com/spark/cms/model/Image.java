@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Image{
 	 @JsonProperty("images") 
+	 @Builder.Default
 	 public List<Image> images = new ArrayList<>();
 	 public String caption;
 	 public String name;

@@ -1,5 +1,5 @@
 type Query {
-	allArticles: [Article]
+	allArticles(page: Int, size: Int): [Article]!
 	getArticleById (articleId: ID!): Article
 }
 
@@ -8,3 +8,4 @@ type Mutation {
  	deleteArticle(articleId: Int!): Boolean
  	updateArticle(articleInput: ArticleInput!): Article!
 }
+
