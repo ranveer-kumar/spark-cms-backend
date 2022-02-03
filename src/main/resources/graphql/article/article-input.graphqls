@@ -1,0 +1,27 @@
+input ArticleInput {
+	id: Int
+	domainId: String
+	title: String
+	headline: String
+	summary: String
+	articleType: String
+	createdBy: String
+	createdDate: String
+	lastModifiedBy: String
+	lastModifiedByUserName: String
+	lastModifiedDate: String
+	lastPublishedBy: String
+	lastPublishedByUserName: String
+	lastPublishedDate: String
+	firstPublishedDate: String
+	metaData: MetaDataInput
+	scheduledDate: String
+	scheduledAt: String
+	scheduledBy: String
+	isDeleted: Boolean
+	readByUsers: [String]
+	expiryDate: String
+	expireAt: String
+	changesPublished: Boolean
+	leadMedia: LeadMediaInput
+}

@@ -1,0 +1,6 @@
+input VideoInput{
+	url: String
+	body: String
+	caption: String
+	embedUrl: String
+}

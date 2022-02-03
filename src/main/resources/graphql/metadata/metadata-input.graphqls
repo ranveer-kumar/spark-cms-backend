@@ -1,0 +1,4 @@
+input MetaDataInput {
+	metaTitle: String
+	url: String
+}

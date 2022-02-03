@@ -1,0 +1,5 @@
+input LeadMediaInput {
+	mediaType:String
+	image: ImageInput
+	video: VideoInput
+}

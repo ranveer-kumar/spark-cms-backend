@@ -1,0 +1,12 @@
+type LeadMedia {
+	mediaType: String
+	image: Image
+    video: Video
+}
+type Image{
+	images: [Image]
+	caption: String
+	name: String
+	imageCredit: String
+	anchorTag: String
+}
