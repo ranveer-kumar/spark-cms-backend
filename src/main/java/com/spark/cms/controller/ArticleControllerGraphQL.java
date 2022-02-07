@@ -2,6 +2,8 @@ package com.spark.cms.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -52,7 +54,7 @@ public class ArticleControllerGraphQL {
 //	@SchemaMapping (typeName = "Mutation", field = "saveArticle")
 //	@ResponseStatus(code = HttpStatus.CREATED)
 	@MutationMapping
-	public Article saveArticle(@Argument ArticleInput articleInput) {
+	public Article saveArticle(@Argument @Valid ArticleInput articleInput) {
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
 		BeanUtils.copyProperties(articleInput, article);
@@ -60,14 +62,6 @@ public class ArticleControllerGraphQL {
 //		return ResponseEntity.status(HttpStatus.CREATED).body(articleService.saveArticle(article));
 		return articleService.saveArticle(article);
 	}
-//	
-//	
-//	@PostMapping("/v1/libraryevent")
-//	public ResponseEntity<LibraryEvent> postLibraryEvent (@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException{
-//		libraryEventProducer.sendLibraryEvent(libraryEvent);
-//		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
-//	}
-	
 	
 	@MutationMapping
 	public Article updateArticle(@Argument ArticleInput articleInput) {

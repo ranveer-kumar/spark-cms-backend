@@ -3,6 +3,8 @@ package com.spark.cms.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
@@ -17,10 +19,14 @@ import lombok.NoArgsConstructor;
 public class Article {
 	@Id
 	private Long id;
+	@NotEmpty
 	private String domainId;
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String headline;
 	private String summary;
+	@NotEmpty
 	private String articleType;
 	private String createdBy;
 	private String createdDate;
