@@ -1,7 +1,6 @@
 type Query {
 	allArticles(page: Int, size: Int): [Article]!
 	getArticleById (articleId: ID!): Article
-#	demoDate: Date
 }
 
 #scalar Date
@@ -10,7 +9,5 @@ type Mutation {
  	saveArticle(articleInput: ArticleInput!): Article!
  	deleteArticle(articleId: Int! @NotBlank): Boolean
  	updateArticle(articleId:ID!): Article!
- 	createMessage(id:ID):ID!
- 	testDirective(id:String): String!
 }
 

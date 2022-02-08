@@ -74,14 +74,6 @@ public class ArticleControllerGraphQL {
 //		return ResponseEntity.status(HttpStatus.CREATED).body(articleService.saveArticle(article));
 		return articleService.saveArticle(article);
 	}
-//	
-//	
-//	@PostMapping("/v1/libraryevent")
-//	public ResponseEntity<LibraryEvent> postLibraryEvent (@RequestBody LibraryEvent libraryEvent) throws JsonProcessingException{
-//		libraryEventProducer.sendLibraryEvent(libraryEvent);
-//		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
-//	}
-	
 	
 	@MutationMapping
 	public Article updateArticle(@Argument ArticleInput articleInput) {
