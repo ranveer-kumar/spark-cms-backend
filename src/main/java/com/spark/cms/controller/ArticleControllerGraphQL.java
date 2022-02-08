@@ -1,6 +1,9 @@
 package com.spark.cms.controller;
 
 import java.util.Optional;
+import java.util.UUID;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,17 @@ public class ArticleControllerGraphQL {
 	@Autowired
 	ArticleService articleService;
 
+	@MutationMapping
+	public UUID createMessage(@Argument UUID id) {
+		log.info("inside={}",id);
+		log.info("random uuid {}", UUID.randomUUID());
+		return UUID.randomUUID();
+	}
+	@MutationMapping
+	public String testDirective(@Argument String id) {
+		return "Hello";
+	}
+	
 //	@SchemaMapping(typeName = "Query", field = "getArticleById")
 	@QueryMapping
 	public Article getArticleById(@Argument Long articleId) throws NotFoundException{
@@ -52,7 +66,7 @@ public class ArticleControllerGraphQL {
 //	@SchemaMapping (typeName = "Mutation", field = "saveArticle")
 //	@ResponseStatus(code = HttpStatus.CREATED)
 	@MutationMapping
-	public Article saveArticle(@Argument ArticleInput articleInput) {
+	public Article saveArticle(@Argument @Valid ArticleInput articleInput) {
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
 		BeanUtils.copyProperties(articleInput, article);

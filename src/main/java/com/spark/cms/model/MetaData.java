@@ -1,6 +1,7 @@
 package com.spark.cms.model;
 
 import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
