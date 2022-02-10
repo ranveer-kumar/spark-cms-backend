@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-@Deprecated
+@Deprecated(since = "pre-beta-0.1", forRemoval = true)
 public class ArticleController {
 
 	@Autowired
@@ -29,7 +29,6 @@ public class ArticleController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Article saveArticle(@RequestBody Article article) {
 		log.info("start saving the article");
-//		log.debug();
 		return articleService.saveArticle(article);
 	}
 	

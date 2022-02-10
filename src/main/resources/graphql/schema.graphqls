@@ -8,6 +8,6 @@ type Query {
 type Mutation {
  	saveArticle(articleInput: ArticleInput!): Article!
  	deleteArticle(articleId: Int! @NotBlank): Boolean
- 	updateArticle(articleId:ID!): Article!
+ 	updateArticle(articleInput: ArticleInput!): Article!
 }
 
