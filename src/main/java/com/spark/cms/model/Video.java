@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Video{
-	 public String url;
-	 public String body;
-	 public String caption;
-	 public String embedUrl;
-	}
+public class Video {
+	private String url;
+	private String body;
+	private String caption;
+	private String embedUrl;
+}

@@ -1,7 +1,6 @@
 package com.spark.cms.controller;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -28,19 +27,7 @@ public class ArticleControllerGraphQL {
 
 	@Autowired
 	ArticleService articleService;
-
-	@MutationMapping
-	public UUID createMessage(@Argument UUID id) {
-		log.info("inside={}",id);
-		log.info("random uuid {}", UUID.randomUUID());
-		return UUID.randomUUID();
-	}
-	@MutationMapping
-	public String testDirective(@Argument String id) {
-		return "Hello";
-	}
 	
-//	@SchemaMapping(typeName = "Query", field = "getArticleById")
 	@QueryMapping
 	public Article getArticleById(@Argument Long articleId) throws NotFoundException{
 		Optional<Article> articleOptional = articleService.getArticleByID(articleId);
@@ -63,24 +50,30 @@ public class ArticleControllerGraphQL {
 		log.info("Deleted article with id {}",articleId);
 	}
 	
-//	@SchemaMapping (typeName = "Mutation", field = "saveArticle")
-//	@ResponseStatus(code = HttpStatus.CREATED)
 	@MutationMapping
 	public Article saveArticle(@Argument @Valid ArticleInput articleInput) {
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
 		BeanUtils.copyProperties(articleInput, article);
 		log.info("start saving the article");
-//		return ResponseEntity.status(HttpStatus.CREATED).body(articleService.saveArticle(article));
 		return articleService.saveArticle(article);
 	}
 	
 	@MutationMapping
-	public Article updateArticle(@Argument ArticleInput articleInput) {
+	public Article updateArticle(@Argument @Valid ArticleInput articleInput) throws NotFoundException {
+		
+		Optional<Article> existingArticle = articleService.getArticleByID(articleInput.getId());
+		if(existingArticle.isEmpty()) {
+			log.error("Article id {} not found", articleInput.getId());
+			throw new NotFoundException("Article not found");
+		}
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
 		BeanUtils.copyProperties(articleInput, article);
-		log.info("start saving the article");
+		article.setCreatedDate(existingArticle.get().getCreatedDate());
+		article.setFirstPublishedDate(existingArticle.get().getFirstPublishedDate());
+		article.getMetaData().setUrl(existingArticle.get().getMetaData().getUrl());
+		log.info("Start updating the article id {}", article.getId());
 		return articleService.saveArticle(article);
 	}
 }

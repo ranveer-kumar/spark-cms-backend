@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class LeadMedia {
-	public String mediaType;
+	private String mediaType;
 	@Builder.Default
-	public Image image = new Image();
+	private Image image = new Image();
 	@Builder.Default
-	public Video video = new Video();
+	private Video video = new Video();
 }

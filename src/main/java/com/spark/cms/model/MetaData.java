@@ -17,17 +17,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @Builder
 public class MetaData {
-	public String metaTitle;
-	public String metaDescription;
+	private String metaTitle;
+	private String metaDescription;
 	@JsonProperty("url")
-	public String url;
-	public ArrayList<Object> authors;
-	public ArrayList<Object> keywords;
-	public String section;
-	public String subSection;
-	public int sectionId;
-	public long subSectionId;
-	public ArrayList<Object> secondarySections;
-	public ArrayList<Object> topic;
-	public String canonicalUrl;
+	private String url;
+	private ArrayList<Object> authors;
+	private ArrayList<Object> keywords;
+	private String section;
+	private String subSection;
+	private int sectionId;
+	private long subSectionId;
+	private ArrayList<Object> secondarySections;
+	private ArrayList<Object> topic;
+	private String canonicalUrl;
 }
