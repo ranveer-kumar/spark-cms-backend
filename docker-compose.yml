@@ -1,31 +1,15 @@
 version: '3.9'
 services:
-  sonarqube:
-    platform: linux/x86_64
-    image: sonarqube:7.9-community
-    environment:
-      # - ALLOW_EMPTY_PASSWORD=yes
-      # - SONARQUBE_PASSWORD=my_password
-      CONFIG_SECCOMP_FILTER: false
-      # SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
-      # SONAR_JDBC_USERNAME: sonar
-      # SONAR_JDBC_PASSWORD: sonar
-    # volumes:
-      # - "~/dev/docker/sonarqube/data:/opt/sonarqube/data"
-      # - "~/dev/docker/sonarqube/extensions:/opt/sonarqube/extensions"
-      # - "~/dev/docker/sonarqube/logs:/opt/sonarqube/logs"
+  mongo:
+    # name: mongo
+    image: mongo
     ports:
-      - "9000:9000"
-  # mongo:
-  #   # name: mongo
-  #   image: mongo
-  #   ports:
-  #     - 27017:27017
-  #   # command: --serviceExecutor adaptive
-  #   volumes:
-  #     - "~/dev/docker/mongodb5:/etc/mongo"
-  #   networks:
-  #     - spark-network
+      - 27017:27017
+    # command: --serviceExecutor adaptive
+    volumes:
+      - "~/dev/docker/mongodb5:/etc/mongo"
+    networks:
+      - spark-network
 
 
   # kafka:
