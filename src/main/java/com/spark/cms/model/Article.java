@@ -3,6 +3,7 @@ package com.spark.cms.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.Id;
@@ -18,9 +19,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Article {
 	@Id
+	@Min(value=1, message = "Id must be positive number")
 	private Long id;
-	@NotEmpty
-	private String domainId;
+	@Min(value = 1, message = "Value should be greater then 0")
+	private Integer domainId;
 	@NotEmpty
 	private String title;
 	@NotEmpty
@@ -30,30 +32,34 @@ public class Article {
 	@NotEmpty
 	private String articleType;
 	private String createdBy;
-	private String createdDate;
+	@Builder.Default
+	private Date createdDate = new Date();
 	private String lastModifiedBy;
 	private String lastModifiedByUserName;
-	private String lastModifiedDate;
+	@Builder.Default
+	private Date lastModifiedDate = new Date();
 	private String lastPublishedBy;
 	private String lastPublishedByUserName;
-	private String lastPublishedDate;
-	private String firstPublishedDate;
+	@Builder.Default
+	private Date lastPublishedDate = new Date();
+	@Builder.Default
+	private Date firstPublishedDate = new Date();
 	@Builder.Default
 	private MetaData metaData = new MetaData();
 	@Builder.Default
 	private Date scheduledDate = new Date();
-	@Builder.Default
-	private Date scheduledAt = new Date();
-	@Builder.Default
-	private Date scheduledBy = new Date();
-	private int isDeleted;
+	private Date scheduledAt;
+	private String scheduledBy;
+	private Boolean isDeleted;
 	@Builder.Default
 	private ArrayList<String> readByUsers = new ArrayList<>();
 	@Builder.Default
 	private Date expiryDate = new Date();
 	@Builder.Default
 	private Date expireAt = new Date();
-	private boolean changesPublished;
+	
+	@Builder.Default
+	private Boolean changesPublished = false;
 	@Builder.Default
 	private LeadMedia leadMedia = new LeadMedia();
 }

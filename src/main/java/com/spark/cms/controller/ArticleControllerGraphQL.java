@@ -1,5 +1,6 @@
 package com.spark.cms.controller;
 
+import java.security.SecureRandom;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import com.spark.cms.exception.NotFoundException;
 import com.spark.cms.model.Article;
 import com.spark.cms.model.ArticleInput;
 import com.spark.cms.service.ArticleService;
+import com.spark.cms.util.CommonUtils;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,12 +57,15 @@ public class ArticleControllerGraphQL {
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
 		BeanUtils.copyProperties(articleInput, article);
+		article.setId((long)new SecureRandom().nextInt(100000));
+		article.getMetaData().setUrl(CommonUtils.urlGenerator(article.getTitle(), article.getId()));
+		
 		log.info("start saving the article");
 		return articleService.saveArticle(article);
 	}
 	
 	@MutationMapping
-	public Article updateArticle(@Argument @Valid ArticleInput articleInput) throws NotFoundException {
+	public Article updateArticle(@Argument @Valid Article articleInput) throws NotFoundException {
 		
 		Optional<Article> existingArticle = articleService.getArticleByID(articleInput.getId());
 		if(existingArticle.isEmpty()) {
@@ -70,9 +75,21 @@ public class ArticleControllerGraphQL {
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
 		BeanUtils.copyProperties(articleInput, article);
+		
+		article.setCreatedBy(existingArticle.get().getCreatedBy());
+
+		
 		article.setCreatedDate(existingArticle.get().getCreatedDate());
 		article.setFirstPublishedDate(existingArticle.get().getFirstPublishedDate());
+		article.setExpireAt(existingArticle.get().getExpireAt());
+		article.setExpiryDate(existingArticle.get().getExpiryDate());
+		article.setScheduledAt(existingArticle.get().getScheduledAt());
+		article.setScheduledDate(existingArticle.get().getScheduledDate());
+		article.setChangesPublished(Boolean.TRUE);
+		
 		article.getMetaData().setUrl(existingArticle.get().getMetaData().getUrl());
+		article.getMetaData().setCanonicalUrl(existingArticle.get().getMetaData().getCanonicalUrl());
+
 		log.info("Start updating the article id {}", article.getId());
 		return articleService.saveArticle(article);
 	}

@@ -1,6 +1,6 @@
 input ArticleInput {
 	id: Int
-	domainId: String
+	domainId: Int
 	title: String
 	headline: String
 	summary: String
