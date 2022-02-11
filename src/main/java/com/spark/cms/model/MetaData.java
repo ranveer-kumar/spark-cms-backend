@@ -21,13 +21,13 @@ public class MetaData {
 	private String metaDescription;
 	@JsonProperty("url")
 	private String url;
-	private ArrayList<Object> authors;
-	private ArrayList<Object> keywords;
+	private ArrayList<String> authors;
+	private ArrayList<String> keywords;
 	private String section;
 	private String subSection;
-	private int sectionId;
-	private long subSectionId;
-	private ArrayList<Object> secondarySections;
-	private ArrayList<Object> topic;
+	private Integer sectionId;
+	private Long subSectionId;
+	private ArrayList<String> secondarySections;
+	private ArrayList<String> topic;
 	private String canonicalUrl;
 }

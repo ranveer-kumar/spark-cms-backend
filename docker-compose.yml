@@ -1,15 +1,15 @@
 version: '3.9'
 services:
-  mongo:
-    # name: mongo
-    image: mongo
-    ports:
-      - 27017:27017
-    # command: --serviceExecutor adaptive
-    volumes:
-      - "~/dev/docker/mongodb5:/etc/mongo"
-    networks:
-      - spark-network
+   mongo:
+     # name: mongo
+     image: mongo
+     ports:
+       - 27017:27017
+     # command: --serviceExecutor adaptive
+     volumes:
+       - "~/dev/docker/mongodb5:/etc/mongo"
+     networks:
+       - spark-network
 
 
   # kafka:

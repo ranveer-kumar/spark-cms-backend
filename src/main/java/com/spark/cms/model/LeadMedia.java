@@ -1,5 +1,8 @@
 package com.spark.cms.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class LeadMedia {
-	private String mediaType;
+	private MediaType mediaType;
 	@Builder.Default
-	private Image image = new Image();
+	private List<Image> images = new ArrayList<>();
 	@Builder.Default
-	private Video video = new Video();
+	private List<Video> videos = new ArrayList<>();
+
 }

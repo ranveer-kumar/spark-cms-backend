@@ -17,6 +17,10 @@ import com.spark.cms.service.ArticleService;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @deprecated (Rest API has end of life, instead of REST use GraphQL end point '/graphql' )
+ */
+
 @RestController
 @Slf4j
 @Deprecated(since = "pre-beta-0.1", forRemoval = true)
@@ -33,7 +37,7 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/api/v1/spark/cms/articles/{id}")
-	public Article getArticle(@PathVariable Long articleId) throws Exception{
+	public Article getArticle(@PathVariable Long articleId) throws NotFoundException{
 		
 		Optional<Article> articleOptional = articleService.getArticleByID(articleId);
 		if(articleOptional.isPresent()) {
