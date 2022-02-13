@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class CommonUtilsTest {
 
+	
 	@ParameterizedTest
 	@MethodSource("urls")
 	void urlGeneratorTest(String url, String expectedValue) {
