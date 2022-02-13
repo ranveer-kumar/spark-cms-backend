@@ -1,4 +1,14 @@
 input MetaDataInput {
 	metaTitle: String
+	metaDescription: String
 	url: String
+	authors: [String]
+	keywords: [String]
+	section: String
+	subSection: String
+	sectionId: Int
+	subSectionId: Int
+	secondarySections: [String]
+	topic: [String]
+	canonicalUrl: String
 }

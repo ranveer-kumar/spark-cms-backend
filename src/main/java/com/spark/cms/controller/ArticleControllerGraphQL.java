@@ -14,6 +14,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.spark.cms.exception.NotFoundException;
 import com.spark.cms.model.Article;
@@ -53,6 +54,7 @@ public class ArticleControllerGraphQL {
 	}
 	
 	@MutationMapping
+	@CrossOrigin
 	public Article saveArticle(@Argument @Valid ArticleInput articleInput) {
 		Article article = new Article();
 		log.info(articleInput.getMetaData().toString());
