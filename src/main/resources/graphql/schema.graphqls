@@ -1,5 +1,5 @@
 type Query {
-	allArticles(page: Int, size: Int): [Article]!
+	allArticles(page: Int, size: Int, sortBy: String = "createdDate", sortDirection: String = "DESC"): [Article]!
 	getArticleById (articleId: ID!): Article
 }
 
