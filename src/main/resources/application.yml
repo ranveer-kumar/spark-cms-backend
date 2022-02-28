@@ -1,4 +1,5 @@
 spring:
+
   application:
     name: spark-cms
   profiles:
@@ -8,6 +9,10 @@ server:
   
 graphql:
   extended-scalars: Date
+  servlet:
+    cors:
+      allowed-origins: "*"
+#      allowed-origin-patterns: ""
 ---
 spring:
   config:

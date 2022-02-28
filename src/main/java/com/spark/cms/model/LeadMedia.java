@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class LeadMedia {
-	private MediaType mediaType;
+	private String mediaType;
 	@Builder.Default
 	private List<Image> images = new ArrayList<>();
 	@Builder.Default

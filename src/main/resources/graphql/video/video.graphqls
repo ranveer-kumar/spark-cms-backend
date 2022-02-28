@@ -1,6 +1,6 @@
 type Video{
-	url: String
-	body: String
-	caption: String
-	embedUrl: String
+    url: String
+    body: String
+    caption: String
+    embedUrl: String
 }

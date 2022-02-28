@@ -32,3 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 /.DS_Store
+/hs_err_pid25159.log
+/hs_err_pid25974.log

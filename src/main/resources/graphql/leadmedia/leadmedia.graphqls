@@ -1,12 +1,6 @@
-type LeadMedia {
-	mediaType: String
-	image: Image
-    video: Video
+type LeadMedia{
+    mediaType: String
+    images: [Image]
+    videos: [Video]
 }
-type Image{
-	images: [Image]
-	caption: String
-	name: String
-	imageCredit: String
-	anchorTag: String
-}
+
