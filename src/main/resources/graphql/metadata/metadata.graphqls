@@ -1,14 +1,15 @@
 type MetaData {
-	metaTitle: String
-	metaDescription: String
-	url: String
-	authors: [String]
-	keywords: [String]
-	section: String
-	subSection: String
-	sectionId: Int
-	subSectionId: Int
-	secondarySections: [String]
-	topic: [String]
-	canonicalUrl: String
+    metaTitle: String
+    metaDescription: String
+    url: String
+    authors: [String]
+    authorEmail: String
+    keywords: [String]
+    section: String
+    subSection: String
+    sectionId: Int
+    subSectionId: Int
+    secondarySections: [String]
+    topic: [String]
+    canonicalUrl: String
 }

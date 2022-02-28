@@ -1,5 +1,11 @@
 input LeadMediaInput {
-	mediaType:String
-	image: ImageInput
-	video: VideoInput
+	mediaType: String
+	images: [ImageInput]
+	videos: [VideoInput]
+}
+
+enum MediaTypeInput{
+	ARTICLE
+	GALLERY
+	VIDEO
 }

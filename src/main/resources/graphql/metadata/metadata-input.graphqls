@@ -3,6 +3,7 @@ input MetaDataInput {
 	metaDescription: String
 	url: String
 	authors: [String]
+	authorEmail: String
 	keywords: [String]
 	section: String
 	subSection: String

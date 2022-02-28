@@ -1,27 +1,33 @@
-type Article {
-	id: Int
-	domainId: Int
-	title: String
-	headline: String
-	summary: String
-	articleType: String
-	createdBy: String
-	createdDate: String
-	lastModifiedBy: String
-	lastModifiedByUserName: String
-	lastModifiedDate: String
-	lastPublishedBy: String
-	lastPublishedByUserName: String
-	lastPublishedDate: String
-	firstPublishedDate: String
-	metaData: MetaData
-	scheduledDate: String
-	scheduledAt: String
-	scheduledBy: String
-	isDeleted: Boolean
-	readByUsers: [String]
-	expiryDate: String
-	expireAt: String
-	changesPublished: Boolean
-	leadMedia: LeadMedia
+type Article{
+    id: Int
+    domainId: Int
+    title: String
+    headline: String
+    summary: String
+    articleType: ArticleType
+    createdBy: String
+    createdDate: String
+    lastModifiedBy: String
+    lastModifiedByUserName: String
+    lastModifiedDate: String
+    lastPublishedBy: String
+    lastPublishedByUserName: String
+    lastPublishedDate: String
+    firstPublishedDate: String
+    metaData: MetaData
+    scheduledDate: String
+    scheduledAt: String
+    scheduledBy: String
+    isDeleted: Boolean
+    readByUsers: [String]
+    expiryDate: String
+    expireAt: String
+    changesPublished: Boolean
+    leadMedia: LeadMedia
+}
+
+enum ArticleType{
+    ARTICLE
+    GALLERY
+    VIDEO
 }

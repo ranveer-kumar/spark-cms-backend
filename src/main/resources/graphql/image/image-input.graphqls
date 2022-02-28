@@ -1,7 +1,7 @@
 input ImageInput{
-	images: [ImageInput]
 	caption: String
-	name: String
+	name:String
 	imageCredit: String
 	anchorTag: String
+	isDefault: Boolean
 }

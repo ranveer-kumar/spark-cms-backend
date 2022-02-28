@@ -1,0 +1,7 @@
+type Image{
+    caption: String
+    name:String
+    imageCredit: String
+    anchorTag: String
+    isDefault: Boolean
+}
