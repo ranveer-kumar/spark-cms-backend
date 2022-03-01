@@ -43,41 +43,39 @@ public class ArticleMutationResolver implements GraphQLMutationResolver {
 
     public Article updateArticle(@Valid ArticleInput articleInput) throws NotFoundException {
 
-        Optional<Article> existingArticle = articleService.getArticleByID(articleInput.getId());
-        if (existingArticle.isEmpty()) {
-            log.error("Article id {} not found", articleInput.getId());
-            throw new NotFoundException("Article not found");
-        }
+        Optional<Article> optionalArticle = articleService.getArticleByID(articleInput.getId());
+        Article existingArticle = optionalArticle.orElseThrow(
+                () -> new NotFoundException("Article cann't update as article with id: "+articleInput.getId()+" not found"));
+
         Article article = new Article();
-        log.info(articleInput.getMetaData().toString());
+        log.info(existingArticle.getMetaData().toString());
         BeanUtils.copyProperties(articleInput, article);
 
-        article.setCreatedBy(existingArticle.get().getCreatedBy());
+        article.setCreatedBy(existingArticle.getCreatedBy());
 
-        article.setCreatedDate(existingArticle.get().getCreatedDate());
-        article.setFirstPublishedDate(existingArticle.get().getFirstPublishedDate());
-        article.setExpireAt(existingArticle.get().getExpireAt());
-        article.setExpiryDate(existingArticle.get().getExpiryDate());
-        article.setScheduledAt(existingArticle.get().getScheduledAt());
-        article.setScheduledDate(existingArticle.get().getScheduledDate());
+        article.setCreatedDate(existingArticle.getCreatedDate());
+        article.setFirstPublishedDate(existingArticle.getFirstPublishedDate());
+        article.setExpireAt(existingArticle.getExpireAt());
+        article.setExpiryDate(existingArticle.getExpiryDate());
+        article.setScheduledAt(existingArticle.getScheduledAt());
+        article.setScheduledDate(existingArticle.getScheduledDate());
         article.setChangesPublished(Boolean.TRUE);
 
-        article.getMetaData().setUrl(existingArticle.get().getMetaData().getUrl());
-        article.getMetaData().setCanonicalUrl(existingArticle.get().getMetaData().getCanonicalUrl());
+        article.getMetaData().setUrl(existingArticle.getMetaData().getUrl());
+        article.getMetaData().setCanonicalUrl(existingArticle.getMetaData().getCanonicalUrl());
 
         log.info("Start updating the article id {}", article.getId());
-        Article article1 = articleService.saveArticle(article);
-        articlePublisher.publish(article1);
-        return article1;
+        Article savedArticle = articleService.saveArticle(article);
+        articlePublisher.publish(savedArticle);
+        return savedArticle;
     }
     public Boolean deleteArticle(Long articleId) throws NotFoundException {
         log.info("Deleting article with id {}", articleId);
         Optional<Article> articleOptional = articleService.getArticleByID(articleId);
-        if (articleOptional.isPresent()) {
-            articleService.deleteArticle(articleId);
-            return true;
-        }
-        throw new NotFoundException("Article not found for id: " + articleId);
+        Article article = articleOptional.orElseThrow(
+                () -> new NotFoundException("Article cann't delete as article with id: "+articleId+" not found"));
+        articleService.deleteArticle(articleId);
+        return true;
 
     }
 }

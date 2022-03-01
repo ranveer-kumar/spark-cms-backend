@@ -1,9 +1,33 @@
 package com.spark.cms.exception;
 
-//@Slf4j
-//@Component
-//public class GraphQLErrorHandlerImpl implements GraphQLErrorHandler {
-//
+import graphql.ExceptionWhileDataFetching;
+import graphql.GraphQLError;
+import graphql.kickstart.execution.error.GraphQLErrorHandler;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Component
+public class CustomGraphQLErrorHandler implements GraphQLErrorHandler {
+
+    @Override
+    public List<GraphQLError> processErrors(List<GraphQLError> errors){
+        return errors.stream().map(this::getError).collect(Collectors.toList());
+    }
+
+    private GraphQLError getError(GraphQLError graphQLError) {
+        if(graphQLError instanceof ExceptionWhileDataFetching){
+            ExceptionWhileDataFetching ex = (ExceptionWhileDataFetching) graphQLError;
+            if((ex.getException() instanceof GraphQLError)){
+                return (GraphQLError) ex.getException();
+            }
+        }
+        return graphQLError;
+    }
+}
 //    @Override
 //    public List<GraphQLError> processErrors(List<GraphQLError> list) {
 //        return list.stream().map(this::getNested).collect(Collectors.toList());

@@ -24,11 +24,16 @@ public class ArticleQueryResolver implements GraphQLQueryResolver {
     ArticleService articleService;
 
     public Article getArticleById(Long articleId) throws NotFoundException {
+
         Optional<Article> articleOptional = articleService.getArticleByID(articleId);
-        if (articleOptional.isPresent()) {
-            return articleOptional.get();
-        }
-        throw new NotFoundException("Article not found for id: " + articleId);
+        Article article = articleOptional.orElseThrow(
+                () -> new NotFoundException("Article not found for id: "+articleId));
+        return articleOptional.get();
+
+//        if (articleOptional.isPresent()) {
+//            return articleOptional.get();
+//        }
+//        throw new NotFoundException("Article not found for id: " + articleId);
     }
 
 
