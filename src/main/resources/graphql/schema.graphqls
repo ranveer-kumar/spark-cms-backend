@@ -8,7 +8,9 @@ type Mutation{
     saveArticle(articleInput: ArticleInput!): Article!
     updateArticle(articleInput: ArticleInput!): Article!
     uploadFile: ID!
-
+}
+type Subscription{
+    recentArticle: Article!
 }
 
 

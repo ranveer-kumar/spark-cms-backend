@@ -25,13 +25,20 @@ public class ArticleMutationResolver implements GraphQLMutationResolver {
     @Autowired
     ArticleService articleService;
 
+    private final ArticlePublisher articlePublisher;
+
+    public ArticleMutationResolver(ArticlePublisher articlePublisher) {
+        this.articlePublisher = articlePublisher;
+    }
     public Article saveArticle(@Valid ArticleInput articleInput) {
         Article article = new Article();
         BeanUtils.copyProperties(articleInput, article);
         article.setId((long) new SecureRandom().nextInt(100000));
         article.getMetaData().setUrl(CommonUtils.urlGenerator(article.getTitle(), article.getId()));
         log.info("start saving the article");
-        return articleService.saveArticle(article);
+        Article article1 = articleService.saveArticle(article);
+        articlePublisher.publish(article1);
+        return article1;
     }
 
     public Article updateArticle(@Valid ArticleInput articleInput) throws NotFoundException {
@@ -59,7 +66,9 @@ public class ArticleMutationResolver implements GraphQLMutationResolver {
         article.getMetaData().setCanonicalUrl(existingArticle.get().getMetaData().getCanonicalUrl());
 
         log.info("Start updating the article id {}", article.getId());
-        return articleService.saveArticle(article);
+        Article article1 = articleService.saveArticle(article);
+        articlePublisher.publish(article1);
+        return article1;
     }
     public Boolean deleteArticle(Long articleId) throws NotFoundException {
         log.info("Deleting article with id {}", articleId);
