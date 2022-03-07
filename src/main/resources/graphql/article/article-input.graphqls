@@ -1,6 +1,6 @@
 input ArticleInput{
     id: Int
-    domainId: Int!
+    domainId: Int! @Positive(message: "graphql.validation.Positive.message")
     title: String! @NotBlank
     headline: String
     summary: String! @NotBlank
