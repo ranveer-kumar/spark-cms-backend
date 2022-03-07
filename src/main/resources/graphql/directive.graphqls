@@ -1,1 +1,2 @@
 directive @NotBlank on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+directive @Positive(message: String!) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION

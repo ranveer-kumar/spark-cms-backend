@@ -13,7 +13,6 @@ public class ScalarTypeConfig {
     public GraphQLScalarType date(){
         return ExtendedScalars.Date;
     }
-    
 
 	@Bean
 	public GraphQLScalarType uploadScalar() {
