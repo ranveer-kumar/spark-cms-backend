@@ -1,10 +1,10 @@
 input ArticleInput{
     id: Int
-    domainId: Int
-    title: String
+    domainId: Int!
+    title: String! @NotBlank
     headline: String
-    summary: String
-    articleType: ArticleType
+    summary: String! @NotBlank
+    articleType: ArticleType! @NotBlank
     createdBy: String
     createdDate: String
     lastModifiedBy: String
