@@ -19,6 +19,7 @@ public class ArticleSubscriptionResolver implements GraphQLSubscriptionResolver 
     }
 
     public Publisher<Article> recentArticle(){
+
         return articlePublisher.getRecentArticle();
     }
 

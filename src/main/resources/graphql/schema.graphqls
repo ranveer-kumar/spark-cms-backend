@@ -1,10 +1,10 @@
 scalar Date
 type Query {
-    getArticleById (articleId: ID! @NotBlank): Article
+    getArticleById (articleId: ID!): Article
     allArticles(page: Int, size: Int, sortBy: String = "createdDate", sortDirection: String = "DESC"): [Article]!
 }
 type Mutation{
-    deleteArticle (articleId: Int! @NotBlank): Boolean
+    deleteArticle (articleId: Int!): Boolean
     saveArticle(articleInput: ArticleInput!): Article!
     updateArticle(articleInput: ArticleInput!): Article!
     uploadFile: ID!
