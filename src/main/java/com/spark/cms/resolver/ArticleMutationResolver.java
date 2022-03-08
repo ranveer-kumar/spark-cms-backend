@@ -75,6 +75,9 @@ public class ArticleMutationResolver implements GraphQLMutationResolver {
         Article article = articleOptional.orElseThrow(
                 () -> new NotFoundException("Article cann't delete as article with id: "+articleId+" not found"));
         articleService.deleteArticle(articleId);
+        article.setIsDeleted(true);
+        articlePublisher.publish(article);
+
         return true;
 
     }
