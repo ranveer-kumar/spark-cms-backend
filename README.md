@@ -1,4 +1,45 @@
 
+![Logo](https://raw.githubusercontent.com/ranveer-kumar/graphql-examples/master/src/main/resources/1.png)
+
+
+
+
+Backend API Service of the Spark CMS
+
+
+## Tech Stack
+
+
+**Server:** Java 11, Spring Boot 2.6.4, GraphQL, Tomcat
+
+
+**Client:** Angular
+
+## Installation
+
+On Terminal use following commands from project directory:
+
+```bash
+    mkdir -p ~/dev/docker/mongodb5  or mkdir -p /home/{uses_home_dir}/dev/docker/mongodb5
+    git clone https://github.com/ranveer-kumar/spark-cms-backend.git
+    cd spark-cms-backend
+    git checkout development
+    git pull
+    docker-compose up
+    mvn clean package
+    mvn spring-boot:run
+    or
+    java -jar ./target/spark-cms-0.0.1-SANPSHOT.jar
+```
+
+
+## Documentation
+
+[Documentation](https://linktodocumentation)
+
+To be updated
+
+
 
 ## API Reference
 
