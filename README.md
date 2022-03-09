@@ -1,30 +1,288 @@
-# Getting Started
 
-#### General setup
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
+
+# Spark CMS
+
+Backend API Service of the Spark CMS
+
+
+## Tech Stack
+
+**Client:** Angular
+
+**Server:** Java 11, Spring Boot 2.6.4, GraphQL, Tomcat
+
+
+## Installation
 
 On Terminal use following commands from project directory:
 
+```bash
+    mkdir -p ~/dev/docker/mongodb5  or mkdir -p /home/{uses_home_dir}/dev/docker/mongodb5
+    git clone https://github.com/ranveer-kumar/spark-cms-backend.git
+    cd spark-cms-backend
+    git checkout development
+    git pull
+    docker-compose up
+    mvn clean package
+    mvn spring-boot:run
+    or
+    java -jar ./target/spark-cms-0.0.1-SANPSHOT.jar
 ```
-mkdir -p ~/dev/docker/mongodb5  or mkdir -p /home/{uses_home_dir}/dev/docker/mongodb5
-git clone https://github.com/ranveer-kumar/spark-cms-backend.git
-cd spark-cms-backend
-git checkout development
-git pull
-docker-compose up
-mvn clean package
-mvn spring-boot:run
-or
-java -jar ./target/spark-cms-0.0.1-SANPSHOT.jar
-```
+
+
+## Documentation
+
+[Documentation](https://linktodocumentation)
+
+
+## API Reference
+
 #### GraphQL QUERY UI
 [http://localhost:8888/graphiql?path=/graphql](http://localhost:8888/graphiql?path=/graphql)
 
-#### Swagger
-[Swagger API URL](http://localhost:8888/swagger-ui/index.html)
-#### API
+#### Save article
+
+```http
+  POST http://localhost:8888/graphql
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `articleInput` | `Object` | **Required**. articleInput object` |
+
+Sample payload to save the article:
+
+```
+mutation {
+  saveArticle(
+    articleInput: {
+      domainId:1
+      title: "title of the artilce"
+      articleType: ARTICLE
+      summary: "Here the summary will go"
+      lastModifiedByUserName: "Ranveer"
+      leadMedia: {
+        mediaType: "image"
+        images: { caption: "caption of the image", imageCredit: "ANI" }
+        videos: { url: "https://youtu.be/OoV_YUswOIA", body: "body text of the video" }
+      }
+      metaData: {
+        metaTitle: "meta title"
+        authorEmail: "dummy@domain.com"
+        url: "https://www.dummy.com/sample"
+        canonicalUrl: "hello1"
+      }
+    }
+  ) {
+    id
+    domainId
+    title
+    articleType
+    summary
+    createdDate
+    lastModifiedByUserName
+    lastPublishedDate
+
+    leadMedia {
+      mediaType
+      images {
+        caption
+        imageCredit
+      }
+      videos {
+        url
+        body
+      }
+    }
+
+    metaData {
+      metaTitle
+      authorEmail
+      url
+      canonicalUrl
+    }
+  }
+}
+
+```
 
 
-[POST Aritcle API](http://localhost:8888/swagger-ui/index.html#/article-controller/saveArticle)
+#### Update article
 
-[GET Article API](http://localhost:8888/swagger-ui/index.html#/article-controller/getArticle)
+```http
+  POST http://localhost:8888/graphql
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `Long` | **Required**. `id` |
+| `clientId` | `Int` | **Required**. `clientId` |
+
+Sample payload to update the article:
+
+```
+mutation {
+  updateArticle(
+    articleInput: {
+      id:47651
+      clientId: 1
+      title: "title-update title-web soc update-final-22"
+      articleType: ARTICLE
+      summary: "summary-web sco-1"
+      lastModifiedByUserName: "Ranveer-uupdate"
+      leadMedia: {
+        mediaType: "video"
+        images: { caption: "caption iage-u", imageCredit: "ANI-u" }
+        videos: { url: "https://youtu.be/OoV_YUswOIA", body: "body text of the video" }
+      }
+      metaData: {
+        metaTitle: "meta title from metaData1-u"
+        authorEmail: "abc@yahoo.com1-u"
+        url: "https://www.google.com11-u"
+        canonicalUrl: "hello1-u"
+      }
+    }
+  ) {
+    id
+    domainId
+    title
+    articleType
+    summary
+    createdDate
+    lastModifiedByUserName
+    lastPublishedDate
+
+    leadMedia {
+      mediaType
+      images {
+        caption
+        imageCredit
+      }
+      videos {
+        url
+        body
+      }
+    }
+
+    metaData {
+      metaTitle
+      authorEmail
+      url
+      canonicalUrl
+    }
+  }
+}
+
+
+```
+
+
+#### Get article by ID
+
+```http
+  POST http://localhost:8888/graphql
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `articleID` | `Long` | **Required**. articleId` |
+
+Sample payload to get the article by ID:
+
+```
+query {
+  getArticleById(articleId:82476) {
+    id
+    domainId
+    title
+    summary
+    createdBy
+    articleType
+    lastModifiedByUserName
+    lastPublishedDate
+
+    metaData {
+      metaTitle
+      authorEmail
+      canonicalUrl
+      url
+    }
+    leadMedia {
+      mediaType
+      images {
+        caption
+        imageCredit
+      }
+      videos {
+        url
+        body
+      }
+    }
+
+  }
+}
+
+
+```
+
+#### Get All Articles
+
+```http
+  POST http://localhost:8888/graphql
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `page` | `Int` | **Optional**. `page` default is: `0` |
+| `size` | `Int` | **Optional**. `size` default is: `0` |
+| `page` | `String` | **Optional**. `sortBy` default is: `createdDate` (field) |
+| `sortDirection` | `String` | **Optional**. `sortDirection` default is: `ASC` |
+
+
+Sample payload to get the allArticle with pagination:
+
+```
+query{
+  allArticles(page:0, size:10,sortBy: "createdDate",  sortDirection:"ASC"){
+    id
+    title
+    leadMedia{
+      mediaType
+      images{
+        caption
+        name
+        anchorTag
+      }
+    }
+    metaData{
+      metaTitle
+      url
+    }
+  }
+}
+
+
+```
+
+
+#### Delete Article by ID
+
+```http
+  POST http://localhost:8888/graphql
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `articleId` | `Long` | **Required**. `articleId` |
+
+Sample payload to delete the article by ID
+
+```
+mutation{
+  deleteArticle(articleId: 478) 
+}
+
+
+```
