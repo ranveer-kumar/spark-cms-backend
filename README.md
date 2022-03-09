@@ -1,41 +1,4 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
-
-# Spark CMS
-
-Backend API Service of the Spark CMS
-
-
-## Tech Stack
-
-**Client:** Angular
-
-**Server:** Java 11, Spring Boot 2.6.4, GraphQL, Tomcat
-
-
-## Installation
-
-On Terminal use following commands from project directory:
-
-```bash
-    mkdir -p ~/dev/docker/mongodb5  or mkdir -p /home/{uses_home_dir}/dev/docker/mongodb5
-    git clone https://github.com/ranveer-kumar/spark-cms-backend.git
-    cd spark-cms-backend
-    git checkout development
-    git pull
-    docker-compose up
-    mvn clean package
-    mvn spring-boot:run
-    or
-    java -jar ./target/spark-cms-0.0.1-SANPSHOT.jar
-```
-
-
-## Documentation
-
-[Documentation](https://linktodocumentation)
-
 
 ## API Reference
 
@@ -45,12 +8,13 @@ On Terminal use following commands from project directory:
 #### Save article
 
 ```http
-  POST http://localhost:8888/graphql
+   POST http://localhost:8888/graphql
+
 ```
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `articleInput` | `Object` | **Required**. articleInput object` |
+| `articleInput` | `Object` | **Required**. `articleInput` object |
 
 Sample payload to save the article:
 
@@ -187,7 +151,7 @@ mutation {
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `articleID` | `Long` | **Required**. articleId` |
+| `articleID` | `Long` | **Required**. `articleId` |
 
 Sample payload to get the article by ID:
 
