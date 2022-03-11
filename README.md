@@ -18,6 +18,8 @@ Backend API Service of the Spark CMS
 
 **Conatainer:** Docker
 
+**Client:** Angular
+
 ## Installation
 
 On Terminal use following commands from project directory:
