@@ -12,10 +12,3 @@ type Mutation{
 type Subscription{
     recentArticle: Article!
 }
-
-
-
-
-
-
-

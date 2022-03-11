@@ -12,6 +12,11 @@ Backend API Service of the Spark CMS
 
 **Server:** Java 11, Spring Boot 2.6.4, GraphQL, Tomcat
 
+**Database:** MongoDB 5.x
+
+**Client:** Angular
+
+**Conatainer:** Docker
 
 **Client:** Angular
 
@@ -53,8 +58,8 @@ To be updated
 
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
+| Parameter      | Type     | Description                         |
+|:---------------| :------- |:------------------------------------|
 | `articleInput` | `Object` | **Required**. `articleInput` object |
 
 Sample payload to save the article:
@@ -291,3 +296,26 @@ mutation{
 
 
 ```
+
+
+#### FileUpload
+
+```http
+  POST http://localhost:8888/graphql
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `articleId` | `Long` | **Required**. `articleId` |
+
+Sample payload to uploadFile
+
+```
+curl --location --request POST 'http://localhost:8888/graphql' \
+--form 'operations="{\"query\": \"mutation { uploadFile }\", \"variables\":{}}"' \
+--form 'file=@"/Users/ranveerkumar/Desktop/Screenshot 2022-02-25 at 9.20.48 AM.png"' \
+--form 'file=@"/Users/ranveerkumar/Desktop/Screenshot 2022-02-17 at 12.08.32 PM.png"' \
+--form 'file=@"/Users/ranveerkumar/Desktop/Screenshot 2022-02-17 at 11.57.18 AM.png"'
+
+```
+
