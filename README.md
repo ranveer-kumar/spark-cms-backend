@@ -14,8 +14,6 @@ Backend API Service of the Spark CMS
 
 **Database:** MongoDB 5.x
 
-**Client:** Angular
-
 **Conatainer:** Docker
 
 **Client:** Angular
